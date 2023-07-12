@@ -1,0 +1,35 @@
+{
+  "name": "typher.review",
+  "version": "0.0.1",
+  "description": "Typher: typographic text editor",
+  "license": "WTFPL",
+  "author": {
+    "name": "Vano Devium",
+    "email": "vano@devium.me",
+    "url": "https://www.devium.me/"
+  },
+  "scripts": {
+    "build": "webpack --mode=production",
+    "start": "webpack serve --mode=development"
+  },
+  "dependencies": {
+    "easy-scroll-sync": "2.0.0",
+    "typograf": "7.1.0"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "11.0.0",
+    "css-loader": "6.8.1",
+    "css-minimizer-webpack-plugin": "5.0.1",
+    "html-webpack-plugin": "5.5.3",
+    "mini-css-extract-plugin": "2.7.6",
+    "postcss": "8.4.25",
+    "postcss-loader": "7.3.3",
+    "postcss-preset-env": "9.0.0",
+    "style-loader": "3.3.3",
+    "tailwindcss": "3.3.2",
+    "terser-webpack-plugin": "5.3.9",
+    "webpack": "5.88.1",
+    "webpack-cli": "5.1.4",
+    "webpack-dev-server": "4.15.1"
+  }
+}
