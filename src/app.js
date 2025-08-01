@@ -39,8 +39,8 @@ $result.addEventListener("click", async () => {
 });
 
 window.dataLayer = window.dataLayer || [];
-window.gtag = function gtag() {
-  dataLayer.push(arguments);
+window.gtag = (...params) => {
+  dataLayer.push(...params);
 };
 window.gtag("js", new Date());
 window.gtag("config", "G-X8YC3F72DB");
