@@ -1,3 +1,4 @@
+const path = require("node:path");
 const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -6,10 +7,10 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   stats: "errors-only",
-  context: "./src",
-  entry: "./app.js",
+  context: path.resolve(__dirname, "src"),
+  entry: path.resolve(__dirname, "src", "app.js"),
   output: {
-    path: "./dist",
+    path: path.resolve(__dirname, "dist"),
     filename: "app.[contenthash].js",
     clean: true,
   },
