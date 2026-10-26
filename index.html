@@ -4,58 +4,63 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Typher: typographic text editor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=JetBrains+Mono:wght@400;500&family=Literata:opsz,wght@7..72,400;500&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="./apple-touch-icon.png"
+      href="/apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./favicon-32x32.png"
+      href="/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="./favicon-16x16.png"
+      href="/favicon-16x16.png"
     />
-    <link rel="manifest" href="./site.webmanifest" />
+    <link rel="manifest" href="/site.webmanifest" />
   </head>
-  <body class="font-mono">
+  <body>
     <div class="h-screen grid grid-rows-[auto_1fr]">
-      <div class="p-2 text-center text-3xl">
+      <div class="text-center">
         Typher: typographic text editor
       </div>
       <div class="grid lg:grid-cols-[1fr_1fr] min-h-0">
         <div id="editor-container" class="flex">
-          <label for="editor" class="hidden"></label>
           <textarea
             id="editor"
             data-scrollsync
             class="w-full outline-0 pl-2.5 resize-none scrollbar-thin h-full overflow-y-auto"
             placeholder="enter your text here"
+            aria-label="enter your text here"
           ></textarea>
         </div>
         <div id="result-container" class="flex">
-          <label for="result" class="hidden"></label>
           <textarea
             id="result"
             data-scrollsync
             class="w-full outline-0 pl-2.5 resize-none scrollbar-thin h-full overflow-y-auto"
             readonly="readonly"
             placeholder="text will be formatted here"
+            aria-label="text will be formatted here"
           ></textarea>
         </div>
       </div>
-      <p
-        class="fixed right-5 bottom-1.5 shadow-sm py-1 px-3 bg-neutral-300/70 rounded-tl-xl rounded-br-xl rounded-bl-xl"
-      >
+      <p class="fixed right-5 bottom-1.5 py-1 px-3">
         made with 💗
         <a target="_blank" href="https://devium.me/">Vano Devium</a>
       </p>
     </div>
+    <script type="module" src="/src/app.js"></script>
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-X8YC3F72DB"

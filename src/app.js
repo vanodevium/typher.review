@@ -2,41 +2,62 @@ import "./app.css";
 
 import { easyScrollSync } from "easy-scroll-sync";
 
-const Typograf = require("typograf");
+import Typograf from "typograf";
 
 const typo = new Typograf({ locale: ["uk", "en-US"], live: true });
-const $editor = document.querySelector("#editor");
-const $result = document.querySelector("#result");
 
-easyScrollSync();
+function boot() {
+  const $editor = document.querySelector("#editor");
+  const $result = document.querySelector("#result");
 
-$editor.focus();
+  if (!$editor || !$result) {
+    return;
+  }
 
-let lastValue = $editor.value;
+  easyScrollSync();
+  $editor.focus();
 
-$editor.addEventListener(
-  "input",
-  async () => {
-    const value = $editor.value;
+  let lastValue = $editor.value;
 
-    if (value !== lastValue) {
-      if (!value) {
-        lastValue = "";
+  $editor.addEventListener(
+    "input",
+    async () => {
+      const value = $editor.value;
+
+      if (value !== lastValue) {
+        if (!value) {
+          lastValue = "";
+          $result.value = lastValue;
+          return;
+        }
+
+        lastValue = typo.execute(value);
         $result.value = lastValue;
-        return;
+
+        try {
+          await navigator.clipboard.writeText(lastValue);
+        } catch {
+          // Clipboard may be unavailable without a user gesture.
+        }
       }
+    },
+    false,
+  );
 
-      lastValue = typo.execute(value);
-      $result.value = lastValue;
-      await navigator.clipboard.writeText(lastValue);
+  $result.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText($result.value);
+    } catch {
+      // Ignore clipboard errors on click-to-copy.
     }
-  },
-  false,
-);
+  });
+}
 
-$result.addEventListener("click", async () => {
-  await navigator.clipboard.writeText($result.value);
-});
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", boot);
+} else {
+  boot();
+}
 
 window.dataLayer = window.dataLayer || [];
 window.gtag = (...params) => {

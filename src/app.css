@@ -1,11 +1,131 @@
 @import "tailwindcss";
 
-#editor {
-  caret-color: #cc99cc;
-  background-color: #2d2d2d;
-  color: #ccc;
+/* Dillinger layout + devium.me blues (https://devium.me/) */
+:root {
+  --devium-blue: #1a569e;
+  --devium-accent: #448aff;
+  --devium-link: #0074d9;
+  --devium-navy: #152034;
+  --dillinger-navbar: #152034;
+  --dillinger-sidebar: #152034;
+  --dillinger-accent: var(--devium-accent);
+  --dillinger-text: #373d49;
+  --dillinger-border: #dddfe2;
+  --dillinger-editor-bg: #ffffff;
+  --dillinger-editor-fg: #000000;
+  --dillinger-preview-bg: #ffffff;
+  --dillinger-preview-fg: #373d49;
+  --dillinger-ui: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --dillinger-mono: "JetBrains Mono", ui-monospace, monospace;
+  --dillinger-serif: "Literata", "IBM Plex Serif", Georgia, serif;
 }
 
+body {
+  font-family: var(--dillinger-ui);
+  color: var(--dillinger-text);
+  background: var(--dillinger-editor-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--devium-link);
+  color: #e8eef2;
+}
+
+/* Top bar — Dillinger navbar tone */
+body > div > div:first-child {
+  background: var(--dillinger-navbar);
+  color: #ffffff;
+  padding: 0.875rem 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 3px solid var(--dillinger-accent);
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.08);
+}
+
+/* Split editor area */
+body > div > div:nth-child(2) {
+  background: var(--dillinger-editor-bg);
+  min-height: 0;
+}
+
+#editor-container,
+#result-container {
+  min-height: 0;
+  background: var(--dillinger-editor-bg);
+}
+
+@media (min-width: 1024px) {
+  #editor-container {
+    border-right: 1px solid var(--dillinger-border);
+  }
+}
+
+/* Source pane */
+#editor {
+  padding: 16px 20px;
+  font-family: var(--dillinger-serif);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  font-variant-ligatures: common-ligatures;
+  font-feature-settings:
+    "kern" 1,
+    "liga" 1;
+  color: var(--dillinger-editor-fg);
+  background-color: var(--dillinger-editor-bg);
+  caret-color: var(--devium-blue);
+}
+
+#editor::placeholder {
+  color: rgb(55 61 73 / 0.45);
+}
+
+/* Formatted output pane */
 #result {
-  color: #454545;
+  padding: 16px;
+  font-family: var(--dillinger-mono);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.65;
+  font-feature-settings: "calt" 1;
+  color: var(--dillinger-preview-fg);
+  background-color: var(--dillinger-preview-bg);
+}
+
+#result::placeholder {
+  color: rgb(55 61 73 / 0.45);
+}
+
+#editor:focus,
+#editor:focus-visible,
+#result:focus,
+#result:focus-visible {
+  outline: none;
+}
+
+/* Footer chip — sidebar/footer dark strip */
+body > div > p.fixed {
+  font-family: var(--dillinger-ui);
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgb(255 255 255 / 0.78);
+  background: var(--dillinger-sidebar);
+  border: 1px solid rgb(0 0 0 / 0.15);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+}
+
+body > div > p.fixed a {
+  color: var(--devium-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+body > div > p.fixed a:hover {
+  color: #e8eef2;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
